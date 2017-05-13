@@ -5,7 +5,38 @@
 	function idCheck() {
 		var setting = 'width=240, height=70, menubar=no, status=no, toolbar=no, location=no,resizable=no';
 		window.open('duple.jsp', 'window팝업', setting);
+	}
+	function validityCheck() {
+		var p = frm.pass.value.trim();
+		var p2 = frm.pass2.value.trim();
+		var j = frm.jumin1.value.trim();
+		var j2 = frm.jumin2.value.trim();
+		var y = frm.year.value.trim();
+		var z = frm.zip1.value.trim();
+		var z2 = frm.zip2.value.trim();
+		var e = frm.email.value.trim();
+		var job = frm.job.value.trim();
+		alert(e);
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		// 검증에 사용할 정규식 변수 regExp에 저장
 
+		if (e.match(regexp) == null) {
+			alert("이메일 형식을 다시 적어 주세여");
+			return false;
+		}
+		alert(y);
+		if (p.length <= 0 && p2.length <= 0 && p != p2) { //비번  같은지 확인
+			p = "";
+			p2 = "";
+			frm.pass.focus();
+			alert("2");
+			return false;
+		}
+		if (!j.match("[0-9]+") && !j2.match("[0-9]+") && !y.match("[0-9]{4}") && !z.match("[0-9]+") && !z2.match("[0-9]+")) {
+			alert("3");
+			return false; //문자가 왔을때 
+		}
+		return false;
 	}
 </script>
 <html>
@@ -81,8 +112,8 @@
 					<td width="100" bgcolor="#ffcccc">직업<font color="red">*</font></td>
 					<td colspan="3"><select name="job">
 							<%
-								String jobs[] = {"==선택==", "학생", "공무원", "언론/출판", "군인/경찰", "일반사무직", "영업직", "기술/전문직", "보건/의료", "자영업", "주부",
-										"기타"};
+								String jobs[] = { "==선택==", "학생", "공무원", "언론/출판", "군인/경찰", "일반사무직", "영업직", "기술/전문직", "보건/의료", "자영업", "주부",
+										"기타" };
 								for (int i = 0; i < jobs.length; i++) {
 							%>
 							<option><%=jobs[i]%></option>
@@ -92,16 +123,14 @@
 					</select></td>
 				</tr>
 				<tr align="center">
-					<td colspan="4"><input type="submit" value="등록"> <input
-						type="reset" value="취소"></td>
+					<td colspan="4"><input type="submit" value="등록"
+						onsubmit="return validityCheck()"> <input type="reset"
+						value="취소"></td>
 				</tr>
 			</table>
 		</form>
 	</center>
 </body>
-<script type="text/javascript">
-function aaa(){
-}
-</script>
+
 
 </html>

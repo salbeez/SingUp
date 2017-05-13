@@ -27,11 +27,6 @@
 		}
 	}
 %>
-<script type="text/javascript">
-	function validityCheck() {
-
-	}
-</script>
 <body>
 	<form action="" method="post">
 		아이디 : <input type="text" size="3" name="id"> <input
