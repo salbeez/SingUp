@@ -16,27 +16,30 @@
 		var z2 = frm.zip2.value.trim();
 		var e = frm.email.value.trim();
 		var job = frm.job.value.trim();
-		alert(e);
 		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		// 검증에 사용할 정규식 변수 regExp에 저장
-
-		if (e.match(regexp) == null) {
+		if (p.length <= 0 || p2.length <= 0 || j.length <= 0 || j2.length <= 0 || z.length <= 0 || z2.length <= 0 || e.length <= 0 || job.length <= 0) {
+			alert("*필수 사항을 적어주세요")
+			return false;
+		}
+		if (p != p2) { //비번  같은지 확인
+			frm.pass.focus();
+			alert("비밀번호가 서로 맞지 않습니다");
+			return false;
+		}
+		if (!j.match("[0-9]{6}") && !j2.match("[0-9]{7}") && !y.match("[0-9]{4}") && !z.match("[0-9]{3}") && !z2.match("[0-9]{3}")) {
+			alert("숫자 또는 문자값이 들어왔거나 형식에 맞춰 작성하지 않았습니다");
+			return false; //문자가 왔을때 
+		}
+		if (job == '==선택==') {
+			alert("직업을 선택해 주세요");
+			return false;
+		}
+		if (e.match(regexp)) {
 			alert("이메일 형식을 다시 적어 주세여");
 			return false;
 		}
-		alert(y);
-		if (p.length <= 0 && p2.length <= 0 && p != p2) { //비번  같은지 확인
-			p = "";
-			p2 = "";
-			frm.pass.focus();
-			alert("2");
-			return false;
-		}
-		if (!j.match("[0-9]+") && !j2.match("[0-9]+") && !y.match("[0-9]{4}") && !z.match("[0-9]+") && !z2.match("[0-9]+")) {
-			alert("3");
-			return false; //문자가 왔을때 
-		}
-		return false;
+		return true;
 	}
 </script>
 <html>
@@ -124,7 +127,7 @@
 				</tr>
 				<tr align="center">
 					<td colspan="4"><input type="submit" value="등록"
-						onsubmit="return validityCheck()"> <input type="reset"
+						onclick="return validityCheck()"> <input type="reset"
 						value="취소"></td>
 				</tr>
 			</table>
