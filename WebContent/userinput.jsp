@@ -41,6 +41,34 @@
 		}
 		return true;
 	}
+	function lastDAY() {
+		var year = document.frm.year.value.trim();
+		if (year.match("[0-9]{4}")) {
+			var oMaxDay = new Date(new Date(year, document.frm.month.value, 1) - 86400000).getDate();
+			var frm = document.frm;
+			if (frm.day.options.length <= 0) {
+				for (var i = 1; i <= oMaxDay; i++) {
+					var op = new Option();
+					op.text = i; // 값 설정 
+					op.selected = true; // 선택된 상태 설정 (기본값은 false이며 선택된 상태로 만들 경우에만 사용) 
+					frm.day.options.add(op); // 옵션 추가
+				}
+			} else {
+				for (i = frm.day.length; i >= 0; i--) {
+					frm.day.options[i] = null;
+				}
+				for (var i = 1; i <= oMaxDay; i++) {
+					var op = new Option();
+					op.text = i; // 값 설정 
+					op.selected = true; // 선택된 상태 설정 (기본값은 false이며 선택된 상태로 만들 경우에만 사용) 
+					frm.day.options.add(op); // 옵션 추가
+				}
+			}
+
+		} else {
+			alert("숫자는 4자리");
+		}
+	}
 </script>
 <html>
 <head>
@@ -93,8 +121,7 @@
 							<c:forEach var="i" begin="1" end="12">
 								<option>${i }</option>
 							</c:forEach>
-					</select>월 <select name="day">
-							<%-- --%>
+					</select>월 <select name="day" onclick="return lastDAY()">
 					</select>일</td>
 				</tr>
 				<tr>
