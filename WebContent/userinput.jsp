@@ -7,15 +7,15 @@
 		window.open('duple.jsp', 'window팝업', setting);
 	}
 	function validityCheck() {
-		var p = frm.pass.value.trim();
-		var p2 = frm.pass2.value.trim();
-		var j = frm.jumin1.value.trim();
-		var j2 = frm.jumin2.value.trim();
-		var y = frm.year.value.trimd();
-		var z = frm.zip1.value.trim();
-		var z2 = frm.zip2.value.trim();
-		var e = frm.email.value.trim();
-		var job = frm.job.value.trim();
+		var p = document.frm.pass.value.trim();
+		var p2 = document.frm.pass2.value.trim();
+		var j = document.frm.jumin1.value.trim();
+		var j2 = document.frm.jumin2.value.trim();
+		var y = document.frm.year.value.trim();
+		var z = document.frm.zip1.value.trim();
+		var z2 = document.frm.zip2.value.trim();
+		var e = document.frm.email.value.trim();
+		var job = document.frm.job.value.trim();
 		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		// 검증에 사용할 정규식 변수 regExp에 저장
 		if (p.length <= 0 || p2.length <= 0 || j.length <= 0 || j2.length <= 0 || z.length <= 0 || z2.length <= 0 || e.length <= 0 || job.length <= 0) {
@@ -39,7 +39,7 @@
 			alert("이메일 형식을 다시 적어 주세여");
 			return false;
 		}
-		return true;
+		return false;
 	}
 	function lastDAY() {
 		var year = document.frm.year.value.trim();
