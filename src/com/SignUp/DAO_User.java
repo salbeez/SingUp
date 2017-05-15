@@ -35,7 +35,7 @@ public class DAO_User extends HttpServlet {
 
 	private void connect() {
 		try {
-			conn = DriverManager.getConnection(pro.getProperty("url"), pro);
+			conn =ds.getConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -112,7 +112,7 @@ public class DAO_User extends HttpServlet {
 			rs = pstmt.executeQuery();
 			if (rs != null && rs.next()) {
 				return 1;
-			} else if (db_idCheck(id)) {// ¾ÆÀÌµð°¡ ÀÖ´Ù´Â ¼Ò¸®´Ï ºñ¹øÀÌ Æ²·È´Ù´Â °Å°í
+			} else if (db_idCheck(id)) {// ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ö´Ù´ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Æ²ï¿½È´Ù´ï¿½ ï¿½Å°ï¿½
 				return 0;
 			} else {
 				return -1;
@@ -127,8 +127,8 @@ public class DAO_User extends HttpServlet {
 	public int update(User user, String id) {
 		try {
 			conn = ds.getConnection();
-			if (db_idCheck(user.getId()) == false) {// ÀÏ´Ü ¸ÕÀú db¿¡ ÀÖ´ÂÁö È®ÀÎ ID´Â
-													// ±âº»Å°´Ï±ñ
+			if (db_idCheck(user.getId()) == false) {// ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ dbï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ IDï¿½ï¿½
+													// ï¿½âº»Å°ï¿½Ï±ï¿½
 				String sql = "UPDATE userinfo SET id=?,pass=?,name=?,jumin=?,birth=?,zip=?,addr=?,email=?,job=? where id=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, user.getId());
@@ -163,9 +163,9 @@ public class DAO_User extends HttpServlet {
 			pstmt.setString(1, id);
 			int t = pstmt.executeUpdate();
 			if (t > 0) {
-				return true;// »èÁ¦ ¼º°ø
+				return true;// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			} else {
-				return false;//½ÇÆÐ
+				return false;//ï¿½ï¿½ï¿½ï¿½
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

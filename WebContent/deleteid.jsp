@@ -23,6 +23,7 @@
 	<center>
 		<%
 			if (flag) {
+				session.invalidate();//현제 로그인된 얘를 지우기 위해
 		%>
 		<table width="280" border="0" cellpadding="5">
 			<tr bgcolor="#3399cc">
