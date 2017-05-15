@@ -11,7 +11,7 @@
 		var p2 = frm.pass2.value.trim();
 		var j = frm.jumin1.value.trim();
 		var j2 = frm.jumin2.value.trim();
-		var y = frm.year.value.trim();
+		var y = frm.year.value.trimd();
 		var z = frm.zip1.value.trim();
 		var z2 = frm.zip2.value.trim();
 		var e = frm.email.value.trim();
