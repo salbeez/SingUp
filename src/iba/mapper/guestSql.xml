@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
+<sqlMap namespace="guest">
+	<insert id="userAdd" parameterClass="com.guest.dto.User">
+		insert into guest
+		values(guest_seq.NEXTVAL,#name#,#pass#,#email#,#tel#,#contents#,sysdate)
+	</insert>
+
+	<select id="findAll_list" resultClass="com.guest.dto.User">
+		select
+		id,name,tel,gdate,contents from guest
+	</select>
+
+	<select id="selectUser" parameterClass="String" resultClass="com.guest.dto.User">
+		select * from guest where id=#id#
+	</select>
+
+	<update id="updateUser" parameterClass="com.guest.dto.User">
+		UPDATE guest
+		SET email
+		=#email#, tel = #tel#, pass=#pass#,contents=#contents#
+		WHERE id=#id#
+	</update>
+
+	<delete id="deleteRow" parameterClass="int">
+		DELETE FROM guest
+		WHERE
+		id=#value#
+	</delete>
+</sqlMap>
