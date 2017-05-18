@@ -51,7 +51,7 @@ public class guestCont extends HttpServlet {
 			return;
 		}
 		System.out.println("ooo : " + req.getParameter("update") + " " + req.getParameter("tel"));
-		if (req.getParameter("update") != null) {// 수정 버튼을 클릭했다면
+		if (req.getParameter("del") != null) {// 수정 버튼을 클릭했다면
 			User user = (User) req.getSession().getAttribute("user");
 			User user2 = getUserBeans(req);
 

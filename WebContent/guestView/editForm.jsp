@@ -9,7 +9,7 @@
 	}
 	function exeUpDel() {
 		if (choice == 'up') {
-			//location.href = "../guestcont?update=z";
+
 			document.ffm2.submit();
 		} else if (choice == 'del') {
 			location.href = "../guestcont?delete=z";
@@ -31,6 +31,7 @@
 		</h3>
 		[<a href="guestcont">게시물 목록으로</a>]
 		<form action="guestcont" name="ffm2" method="post">
+			<input type="hidden" name="del" value="edit">
 			<table cellpadding="5" border="1">
 				<tr class="field">
 					<td class="filed">작성자</td>
