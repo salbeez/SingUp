@@ -1,7 +1,9 @@
 package com.guest.DAO;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.guest.dto.User;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -30,7 +32,7 @@ public class GuestDAO {
 		List<User> list = null;
 		try {
 			list = smc.queryForList("guest.findAll_list");
-			System.out.println(list.size());
+			System.out.println("찾아온 사이즈 : " + list.size());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,5 +75,33 @@ public class GuestDAO {
 			e.printStackTrace();
 			return "fail_sql";
 		}
+	}
+
+	public List<User> selectPage(int page,int recordCount) {
+		List<User> list = null;
+		int end = page * recordCount;
+		int start = end - recordCount-1;
+		try {
+			Map<String, Integer> map = new HashMap<>();
+			map.put("start", start);
+			map.put("end", end);
+			list = smc.queryForList("guest.selectPage", map);
+			System.out.println("찾아온 사이즈 : " + list.size());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public int selectCount(){
+		int count=0;
+		try {
+			count= (Integer) smc.queryForObject("guest.count");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
 	}
 }

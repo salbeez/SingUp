@@ -8,7 +8,7 @@
 
 	<select id="findAll_list" resultClass="com.guest.dto.User">
 		select
-		id,name,tel,gdate,contents from guest
+		id,name,tel,gdate,contents from guest order by id desc
 	</select>
 
 	<select id="selectUser" parameterClass="String" resultClass="com.guest.dto.User">
@@ -27,4 +27,25 @@
 		WHERE
 		id=#value#
 	</delete>
+
+	<select id="selectPage2" resultClass="com.guest.dto.User"><![CDATA[
+		select id,name,tel,gdate,contents 
+		from (select id,name,tel,gdate,contents
+				from guest order by id desc)
+		where rownum >=1 and rownum <=10]]>
+	</select>
+
+	<select id="selectPage" resultClass="com.guest.dto.User"><![CDATA[
+		select id,name,tel,gdate,contents 
+		from (select id,name,tel,gdate,contents,rownum rn
+				from (select id,name,tel,gdate,contents
+						from guest order by id desc)
+				)
+		where rn between #start# and #end#]]>
+	</select>
+
+	<select id="count" resultClass="int">
+		select count(*) from guest
+	</select>
+	
 </sqlMap>

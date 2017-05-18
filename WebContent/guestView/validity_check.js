@@ -15,7 +15,7 @@ function valide() {
 		return false;
 	} else {
 		if (!emailExp.test(email)) { //이메일 패턴에 해당하지 않았다면
-			alert("이메일 형식에 맞게 작성해 주세요 .<br> 형식(6~15자리@a-zA-Z.com )")
+			alert("이메일 형식에 맞게 작성해 주세요 . 형식(6~15자리@a-zA-Z.com )");
 			return false;
 		}
 	}
@@ -26,3 +26,4 @@ function valide() {
 	alert("유효성검사 성공");
 	return true;
 }
+

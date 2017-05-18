@@ -34,6 +34,30 @@
 				</c:forEach>
 			</table>
 		</form>
+		<c:forEach var="i" begin="1" end="${totpage }">
+			<c:if test="${i ==page}">
+				[${i }]
+			</c:if>
+			<c:if test="${i !=page}">
+				<a href="guestcont?page=${i}">[${i }]</a>
+			</c:if>
+
+		</c:forEach>
+		<br>
+
+		<c:if test="${page>1 }">
+			<a href="guestcont?page=${page-1 }">이전</a>
+		</c:if>
+		<c:if test="${page==1 }">
+			이전
+		</c:if>
+
+		<c:if test="${page<totpage }">
+			<a href="guestcont?page=${page+1 }">다음</a>
+		</c:if>
+		<c:if test="${page==totpage }">
+			다음
+		</c:if>
 	</center>
 </body>
 </html>
